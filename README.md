@@ -9,6 +9,10 @@ The following template repositories are available for generating new services or
 - [Frontend VueJs Web Apps](https://github.com/treed1104/template-webpack-vue) - Javascript/Typescript Vue
 - [Backend REST API](https://github.com/TReed1104/template-flask-restful) - Python3 Flask
 
+### Note
+This repo was "forked" from [Tom Reed](https://github.com/TReed1104/), who used to work here. Ollie copied the file structure
+and made this new repository so that we could work on Asgard more effectively.
+
 <br>
 
 ---
