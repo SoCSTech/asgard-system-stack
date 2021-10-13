@@ -1,0 +1,16 @@
+version: "3.5"
+networks:
+    yggdrasil-frontend-dev-network:
+        name: yggdrasil-frontend-dev-network
+services:
+    yggdrasil-frontend-dev:
+        container_name: yggdrasil-frontend-dev
+        image: node:latest
+        volumes:
+            - ./app:/app
+        working_dir: /app
+        ports:
+            - "8080:8080"
+        command: "bash -c 'yarn && yarn run dev-docker'"
+        networks:
+            - yggdrasil-frontend-dev-network

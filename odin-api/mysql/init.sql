@@ -1,0 +1,2 @@
+CREATE DATABASE IF NOT EXISTS db_odin_api;
+CREATE DATABASE IF NOT EXISTS testing_db_odin_api;

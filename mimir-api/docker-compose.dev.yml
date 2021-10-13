@@ -1,0 +1,36 @@
+version: "3.5"
+networks:
+    mimir-api-dev-network:
+        name: mimir-api-dev-network
+services:
+    db-mysql-dev:
+        container_name: mimir-api-dev-db
+        image: mysql:latest
+        command: --init-file /usr/src/app/init.sql
+        volumes:
+            - ./mysql/init.sql:/usr/src/app/init.sql
+            - ./volumes/db:/var/lib/mysql
+        expose:
+            - "3306"
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: <PASSWORD>
+            MYSQL_DATABASE: <DATABASE_NAME>
+            MYSQL_USER: <USER>
+            MYSQL_PASSWORD: <PASSWORD>
+        networks:
+            - mimir-api-dev-network
+
+    mimir-api-dev:
+        container_name: mimir-api-dev
+        build:
+            context: ./api
+            dockerfile: Dockerfile.dev
+        image: treed1104/mimir-api-dev:latest
+        restart: always
+        links:
+            - db-mysql
+        ports:
+            - "5000:5000"
+        networks:
+            - mimir-api-dev-network

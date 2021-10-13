@@ -1,0 +1,152 @@
+version: "3.5"
+networks:
+    asgard-network-dev:
+        name: asgard-network-dev
+services:
+    nginx-dev:
+        container_name: asgard-nginx-dev
+        image: nginx:latest
+        restart: always
+        volumes:
+            - ./nginx/nginx-dev.conf:/etc/nginx/nginx.conf
+        ports:
+            - 80:80
+            - 443:443
+        networks:
+            - asgard-network-dev
+
+    db-mysql-dev:
+        container_name: asgard-db-dev
+        image: mysql:latest
+        command: --init-file /usr/src/app/init.sql
+        volumes:
+            - ./mysql/init.sql:/usr/src/app/init.sql
+            - ./volumes/test_db:/var/lib/mysql
+        expose:
+            - "3306"
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: <PASSWORD>
+            MYSQL_DATABASE: <DATABASE_NAME>
+            MYSQL_USER: <USER>
+            MYSQL_PASSWORD: <PASSWORD>
+        networks:
+            - asgard-network-dev
+
+    asgard-frontend-dev:
+        container_name: asgard-frontend-dev
+        image: node:latest
+        volumes:
+            - ./asgard-frontend/app:/app
+        working_dir: /app
+        expose:
+            - "8080"
+        command: "bash -c 'yarn && yarn run dev-docker'"
+        networks:
+            - asgard-network-dev
+
+    heimdall-api-dev:
+        container_name: heimdall-api-dev
+        build:
+            context: ./heimdall-api/api
+            dockerfile: Dockerfile.dev
+        image: treed1104/heimdall-api-dev:latest
+        volumes:
+            - ./heimdall-api/api:/usr/src/app
+        restart: always
+        links:
+            - db-mysql-dev
+        expose:
+            - "5000"
+        networks:
+            - asgard-network-dev
+
+    heimdall-frontend-dev:
+        container_name: heimdall-frontend-dev
+        image: node:latest
+        volumes:
+            - ./heimdall-frontend/app:/app
+        working_dir: /app
+        links:
+            - heimdall-api-dev
+        expose:
+            - "8080"
+        command: "bash -c 'yarn && yarn run dev-docker'"
+        networks:
+            - asgard-network-dev
+
+    mimir-api-dev:
+        container_name: mimir-api-dev
+        build:
+            context: ./mimir-api/api
+            dockerfile: Dockerfile.dev
+        image: treed1104/mimir-api-dev:latest
+        volumes:
+            - ./mimir-api/api:/usr/src/app
+        restart: always
+        links:
+            - db-mysql-dev
+        expose:
+            - "5000"
+        networks:
+            - asgard-network-dev
+
+    mimir-frontend-dev:
+        container_name: mimir-frontend-dev
+        image: node:latest
+        volumes:
+            - ./mimir-frontend/app:/app
+        working_dir: /app
+        links:
+            - mimir-api-dev
+        expose:
+            - "8080"
+        command: "bash -c 'yarn && yarn run dev-docker'"
+        networks:
+            - asgard-network-dev
+
+    yggdrasil-api-dev:
+        container_name: yggdrasil-api-dev
+        build:
+            context: ./yggdrasil-api/api
+            dockerfile: Dockerfile.dev
+        image: treed1104/yggdrasil-api-dev:latest
+        volumes:
+            - ./yggdrasil-api/api:/usr/src/app
+        restart: always
+        links:
+            - db-mysql-dev
+        expose:
+            - "5000"
+        networks:
+            - asgard-network-dev
+
+    yggdrasil-frontend-dev:
+        container_name: yggdrasil-frontend-dev
+        image: node:latest
+        volumes:
+            - ./yggdrasil-frontend/app:/app
+        working_dir: /app
+        links:
+            - yggdrasil-api-dev
+        expose:
+            - "8080"  
+        command: "bash -c 'yarn && yarn run dev-docker'"
+        networks:
+            - asgard-network-dev
+
+    odin-api-dev:
+        container_name: odin-api-dev
+        build:
+            context: ./odin-api/api
+            dockerfile: Dockerfile.dev
+        image: treed1104/odin-api-dev:latest
+        volumes:
+            - ./odin-api/api:/usr/src/app
+        restart: always
+        links:
+            - db-mysql-dev
+        expose:
+            - "5000"
+        networks:
+            - asgard-network-dev
