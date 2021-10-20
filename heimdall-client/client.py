@@ -12,7 +12,6 @@ from pathlib import Path
 
 ## Controls the runtime loop of the app
 isRunning = True
-
 ## Set OS Logging Location
 sys.stdout = open(str(Path.home()) + "/heimdall/logs.txt", "w")
 sys.stderr = open(str(Path.home()) + "/heimdall/errors.txt", "w")
@@ -155,5 +154,5 @@ def main():
         sleep(60)
 
 ## Main app thread entry
-if __name__ == '__main__':
-    main()
+# if __name__ == '__main__':
+main()
