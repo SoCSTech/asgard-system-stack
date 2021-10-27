@@ -1,0 +1,3 @@
+[submodule "yggdrasil-revamp"]
+	path = yggdrasil-revamp
+	url = https://github.com/blewert/yggdrasil-revamp.git
