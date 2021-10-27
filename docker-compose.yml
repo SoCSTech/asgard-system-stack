@@ -52,7 +52,7 @@ services:
         build:
             context: ./heimdall-api/api
             dockerfile: Dockerfile
-        image: treed1104/heimdall-api:latest
+        image: itsgrooben/heimdall-api:latest
         restart: always
         links:
             - db-mysql
@@ -78,7 +78,7 @@ services:
         build:
             context: ./mimir-api/api
             dockerfile: Dockerfile
-        image: treed1104/mimir-api:latest
+        image: itsgrooben/mimir-api:latest
         restart: always
         links:
             - db-mysql
@@ -104,7 +104,7 @@ services:
         build:
             context: ./yggdrasil-api/api
             dockerfile: Dockerfile
-        image: treed1104/yggdrasil-api:latest
+        image: itsgrooben/yggdrasil-api:latest
         restart: always
         links:
             - db-mysql
@@ -130,7 +130,7 @@ services:
         build:
             context: ./odin-api/api
             dockerfile: Dockerfile
-        image: treed1104/odin-api:latest
+        image: itsgrooben/odin-api:latest
         restart: always
         links:
             - db-mysql

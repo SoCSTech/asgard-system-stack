@@ -50,7 +50,7 @@ services:
         build:
             context: ./heimdall-api/api
             dockerfile: Dockerfile.dev
-        image: treed1104/heimdall-api-dev:latest
+        image: itsgrooben/heimdall-api-dev:latest
         volumes:
             - ./heimdall-api/api:/usr/src/app
         restart: always
@@ -80,7 +80,7 @@ services:
         build:
             context: ./mimir-api/api
             dockerfile: Dockerfile.dev
-        image: treed1104/mimir-api-dev:latest
+        image: itsgrooben/mimir-api-dev:latest
         volumes:
             - ./mimir-api/api:/usr/src/app
         restart: always
@@ -110,7 +110,7 @@ services:
         build:
             context: ./yggdrasil-api/api
             dockerfile: Dockerfile.dev
-        image: treed1104/yggdrasil-api-dev:latest
+        image: itsgrooben/yggdrasil-api-dev:latest
         volumes:
             - ./yggdrasil-api/api:/usr/src/app
         restart: always
@@ -140,7 +140,7 @@ services:
         build:
             context: ./odin-api/api
             dockerfile: Dockerfile.dev
-        image: treed1104/odin-api-dev:latest
+        image: itsgrooben/odin-api-dev:latest
         volumes:
             - ./odin-api/api:/usr/src/app
         restart: always

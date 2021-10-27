@@ -38,7 +38,7 @@ services:
         build:
             context: ./api
             dockerfile: Dockerfile
-        image: treed1104/yggdrasil-api:latest
+        image: itsgrooben/yggdrasil-api:latest
         restart: always
         links:
             - db-mysql
