@@ -38,7 +38,7 @@ services:
         build:
             context: ./api
             dockerfile: Dockerfile
-        image: itsgrooben/mimir-api:latest
+        image: treed1104/mimir-api:latest
         restart: always
         links:
             - db-mysql

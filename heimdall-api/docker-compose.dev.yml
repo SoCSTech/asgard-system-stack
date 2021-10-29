@@ -26,7 +26,7 @@ services:
         build:
             context: ./api
             dockerfile: Dockerfile.dev
-        image: itsgrooben/heimdall-api-dev:latest
+        image: treed1104/heimdall-api-dev:latest
         restart: always
         links:
             - db-mysql

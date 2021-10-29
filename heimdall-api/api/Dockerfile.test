@@ -1,5 +1,5 @@
 ## Build from Ubuntu 16.04 base image
-FROM ubuntu:20.04
+FROM ubuntu:16.04
 
 ## Disable Interaction
 ENV DEBIAN_FRONTEND noninteractive
