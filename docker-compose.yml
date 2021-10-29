@@ -138,3 +138,10 @@ services:
             - "5000"
         networks:
             - asgard-network
+    yggdrasil-2:
+        container_name: yggdrasil-2
+        image: itsgrooben/yggdrasil-2:0.1.3
+        restart: unless-stopped
+        ports:
+        - 1201:8080
+
